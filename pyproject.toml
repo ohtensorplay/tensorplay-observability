@@ -51,7 +51,7 @@ dev = [
   "build>=1.2",
   "pre-commit>=3.7",
   "pytest>=8",
-  "ruff==0.16.8",
+  "ruff==0.17.6",
 ]
 all = [
   "opentelemetry-api>=1.44",
