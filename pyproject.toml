@@ -1,0 +1,88 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "tensorplay-observability"
+version = "0.1.0"
+description = "Shared observability primitives for the TensorPlay ecosystem (megaLM / megaRL)"
+readme = "README.md"
+requires-python = ">=3.12"
+license = "Apache-2.0"
+license-files = ["LICENSE", "NOTICE"]
+authors = [{ name = "TensorPlay Authors" }]
+keywords = [
+  "observability",
+  "prometheus",
+  "opentelemetry",
+  "structured-logging",
+  "tensorboard",
+  "tensorplay",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "Intended Audience :: Science/Research",
+  "Operating System :: POSIX :: Linux",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Programming Language :: Rust",
+  "Topic :: System :: Monitoring",
+  "Typing :: Typed",
+]
+dependencies = []
+
+[project.optional-dependencies]
+# OTLP metrics + traces (HTTP/protobuf). Unconfigured => every signal no-ops.
+otel = [
+  "opentelemetry-api>=1.44",
+  "opentelemetry-sdk>=1.44",
+  "opentelemetry-exporter-otlp-proto-http>=1.44",
+]
+# Training-curve fan-out. Each SDK is optional at runtime; install only what
+# you use.
+tracking = [
+  "tensorboard>=2.14",
+  "wandb>=0.16",
+]
+test = ["pytest>=8"]
+dev = [
+  "build>=1.2",
+  "pre-commit>=3.7",
+  "pytest>=8",
+  "ruff==0.16.8",
+]
+all = [
+  "opentelemetry-api>=1.44",
+  "opentelemetry-sdk>=1.44",
+  "opentelemetry-exporter-otlp-proto-http>=1.44",
+  "tensorboard>=2.14",
+  "wandb>=0.16",
+]
+
+[project.urls]
+Homepage = "https://github.com/ohtensorplay/tensorplay-observability"
+Repository = "https://github.com/ohtensorplay/tensorplay-observability"
+Issues = "https://github.com/ohtensorplay/tensorplay-observability/issues"
+Changelog = "https://github.com/ohtensorplay/tensorplay-observability/blob/main/CHANGELOG.md"
+Documentation = "https://github.com/ohtensorplay/tensorplay-observability#readme"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+tp_observability = ["py.typed"]
+
+[tool.pytest.ini_options]
+addopts = "-ra"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 88
+
+[tool.ruff.lint]
+# Blocking gate shared by local checks, pre-commit and CI: catch syntax errors
+# and undefined names. Broader style rules are rolled out incrementally.
+select = ["E9", "F63", "F7", "F82"]

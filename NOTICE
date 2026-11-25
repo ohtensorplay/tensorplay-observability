@@ -1,0 +1,12 @@
+tensorplay-observability — shared observability primitives for the TensorPlay ecosystem
+Copyright 2026 TensorPlay Authors
+
+This product includes software developed by the TensorPlay project and its
+contributors: https://github.com/lexing-2026/TensorPlay
+
+Portions of the Python modules are derived from MegaLM's observability layer
+and are maintained here as the shared implementation:
+https://github.com/ohtensorplay/megalm
+
+Third-party dependencies remain under their own licenses. See their license
+headers and the dependency lists in pyproject.toml and rust/Cargo.toml.

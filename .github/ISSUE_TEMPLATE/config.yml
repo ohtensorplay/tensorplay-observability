@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Documentation
+    url: https://github.com/ohtensorplay/tensorplay-observability/blob/main/README.md
+    about: Usage, the snapshot contract, supported backends and the repository layout.
+  - name: Community forum
+    url: https://forum.tensorplay.org
+    about: Questions, usage discussions and ideas that are not bug reports.
+  - name: Security vulnerability
+    url: https://github.com/ohtensorplay/tensorplay-observability/security/advisories/new
+    about: Please report security issues privately, not as a public issue.

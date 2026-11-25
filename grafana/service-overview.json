@@ -1,0 +1,51 @@
+{
+  "title": "TensorPlay service overview",
+  "uid": "tp-service-overview",
+  "schemaVersion": 39,
+  "version": 1,
+  "refresh": "10s",
+  "templating": {
+    "list": [
+      {
+        "name": "prefix",
+        "label": "Metric prefix",
+        "type": "textbox",
+        "current": {"value": "megalm"},
+        "options": []
+      },
+      {
+        "name": "job",
+        "label": "Scrape job",
+        "type": "textbox",
+        "current": {"value": "megalm"},
+        "options": []
+      }
+    ]
+  },
+  "panels": [
+    {
+      "type": "timeseries",
+      "title": "Request rate",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 0},
+      "targets": [{"expr": "rate(${prefix}_proxy_admitted_requests{job=\"$job\"}[5m])", "legendFormat": "admitted"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "Error rate",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 0},
+      "targets": [{"expr": "rate(${prefix}_errors{job=\"$job\"}[5m])", "legendFormat": "errors"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "Latency p95",
+      "gridPos": {"h": 8, "w": 12, "x": 0, "y": 8},
+      "targets": [{"expr": "histogram_quantile(0.95, sum by (le) (rate(${prefix}_ttft_ms_histogram_bucket{job=\"$job\"}[5m])))", "legendFormat": "p95 TTFT"}]
+    },
+    {
+      "type": "timeseries",
+      "title": "In flight / saturation",
+      "gridPos": {"h": 8, "w": 12, "x": 12, "y": 8},
+      "targets": [{"expr": "${prefix}_in_flight{job=\"$job\"}", "legendFormat": "in flight"}]
+    }
+  ]
+}

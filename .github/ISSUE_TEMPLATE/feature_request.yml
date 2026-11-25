@@ -1,0 +1,32 @@
+name: 🚀 Feature request
+description: Suggest a new signal, backend, exporter or optimization
+title: "[Feature] "
+labels: ["enhancement"]
+body:
+  - type: textarea
+    id: motivation
+    attributes:
+      label: Motivation
+      description: What problem would this solve? Who would benefit?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: |
+        Describe the API, snapshot shape, exporter or backend you have in mind.
+        If it changes the shared snapshot contract or Prometheus rendering, say
+        so explicitly — both renderers must stay byte-identical.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches or workarounds you considered, and why they are insufficient.
+  - type: textarea
+    id: resources
+    attributes:
+      label: Related resources
+      description: Links to standards, vendor docs, dashboards or reference implementations.
